@@ -57,7 +57,7 @@ function App() {
   //canvas
   return (
     <div>
-      <div style={{position: 'fixed'}}>
+      <div id="tools">
         <input type="radio" id="line" checked={elementType === "line"} onChange={() => setElementType("line")} />
         <label htmlFor="line">Line</label>
         <input
