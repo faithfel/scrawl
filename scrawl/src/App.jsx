@@ -6,7 +6,7 @@ const generator = rough.generator();
 
 function createElement(x1, y1, x2, y2) {
   
-  const roughElement = generator.line(x1, y1, x2, y2);
+  const roughElement = generator.line(x1, y1, x2-x1, y2-1);
   return { x1, y1, x2, y2, roughElement};
 }
 
@@ -23,7 +23,7 @@ function App() {
 
     const roughCanvas = rough.canvas(canvas);
     
-    elements.forEach(([roughElement]) => roughCanvas.draw(roughElement));
+    elements.forEach(({roughElement}) => roughCanvas.draw(roughElement));
 
   }, [elements]);
 
