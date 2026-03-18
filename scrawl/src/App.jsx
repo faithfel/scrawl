@@ -6,7 +6,7 @@ const generator = rough.generator();
 
 function createElement(x1, y1, x2, y2) {
   
-  const roughElement = generator.line(x1, y1, x2-x1, y2-1);
+  const roughElement = generator.rectangle(x1, y1, x2-x1, y2-y1);
   return { x1, y1, x2, y2, roughElement};
 }
 
@@ -14,6 +14,8 @@ function createElement(x1, y1, x2, y2) {
 function App() {
   const [elements, setElements] = useState([]);
   const[drawing, setDrawing] = useState(false);
+
+  const[elementType, setElementType] = useState("line");
 
   //the rough elements :D
   useLayoutEffect(() => {
@@ -32,7 +34,7 @@ function App() {
 
     const {clientX, clientY} = event;
 
-    const element = createElement(clientX, clientY,clientX, clientY);
+    const element = createElement(clientX, clientY,clientX, clientY, elementType);
     setElements(prevState => [...prevState, element]);
   }
   const handleMouseMove = (event) => {
@@ -41,7 +43,7 @@ function App() {
     const {clientX, clientY} = event;
     const index = elements.length - 1;
     const {x1, y1} = elements[index];
-    const updatedElement = createElement(x1, y1, clientX, clientY);
+    const updatedElement = createElement(x1, y1, clientX, clientY, elementType);
     const elementsCopy = [...elements];
     elementsCopy[index] = updatedElement;
     setElements(elementsCopy);
@@ -52,17 +54,30 @@ function App() {
 
   //canvas
   return (
-    <canvas 
-    
-    id="canvas" 
-    width={window.innerWidth} 
-    height={window.innerHeight} 
-    onMouseDown={handleMouseDown}
-    onMouseMove={handleMouseMove}
-    onMouseUp={handleMouseUp}
-    >
-    Canvas
-    </canvas>
+    <div>
+      <div style={{position: 'fixed'}}>
+        <input type="radio" id="line" checked={elementType === "line"} onChange={() => setElementType("line")} />
+        <label htmlFor="line">Line</label>
+        <input
+          type="radio"
+          id="rectangle"
+          checked={elementType === "rectangle"}
+          onChange={() => setElementType("rectangle")}
+        />
+        <label htmlFor="rectangle">Rectangle</label>
+      </div>
+      <canvas 
+      
+      id="canvas" 
+      width={window.innerWidth} 
+      height={window.innerHeight} 
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      >
+      Canvas
+      </canvas>
+    </div>
   );
 }
 
