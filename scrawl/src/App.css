@@ -7,5 +7,19 @@
 body {
 
 
+
   background-color: #262423;
+<<<<<<< HEAD
+  background-image: url("../public/dotted.svg"); 
+  background-size: 30%;
+  background-repeat: repeat;
 }
+
+#tools {
+  background-color: ;
+}
+
+
+=======
+}
+>>>>>>> parent of b926795 (added dotted bg)
