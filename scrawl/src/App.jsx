@@ -4,9 +4,11 @@ import rough from 'roughjs/bundled/rough.esm.js';
 
 const generator = rough.generator();
 
-function createElement(x1, y1, x2, y2) {
+function createElement(x1, y1, x2, y2, type) {
   
-  const roughElement = generator.rectangle(x1, y1, x2-x1, y2-y1);
+  const roughElement = type === "line" 
+  ? generator.line(x1, y1, x2, y2) 
+  : generator.rectangle(x1, y1, x2-x1, y2-y1);
   return { x1, y1, x2, y2, roughElement};
 }
 
