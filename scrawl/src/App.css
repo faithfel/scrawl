@@ -1,19 +1,11 @@
-
 #canvas {
   background-color: #ffffff ;
   margin: 20px;
   border-radius: 20px;
-
 }
 
 body {
+
+
   background-color: #262423;
-  background-image: url("../public/dotted.svg"); 
-  background-size: 30%;
-  background-repeat: repeat;
 }
-
-html, body {
-    height: 100%;
-}
-

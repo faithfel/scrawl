@@ -1,5 +1,9 @@
 {
+
   "dependencies": {
     "roughjs": "^4.6.6"
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
 }
