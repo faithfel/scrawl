@@ -15,18 +15,17 @@ function App() {
   const [elements, setElements] = useState([]);
   const[drawing, setDrawing] = useState(false);
 
+  //the rough elements :D
   useLayoutEffect(() => {
     const canvas = document.getElementById('canvas')
     const context = canvas.getContext('2d')
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     const roughCanvas = rough.canvas(canvas);
-    const rect = generator.rectangle(10, 10, 100, 100,);
-    const line = generator.line(10, 10, 110, 110,);
-    roughCanvas.draw(rect);
-    roughCanvas.draw(line);
+    
+    elements.forEach(([roughElement]) => roughCanvas.draw(roughElement));
 
-  });
+  }, [elements]);
 
   const handleMouseDown = (event) => {
     setDrawing(true);
@@ -36,21 +35,22 @@ function App() {
     const element = createElement(clientX, clientY,clientX, clientY);
     setElements(prevState => [...prevState, element]);
   }
-  
   const handleMouseMove = (event) => {
     if (!drawing) return;
 
     const {clientX, clientY} = event;
-    console.log(clientX, clientY);
-
-
+    const index = elements.length - 1;
+    const {x1, y1} = elements[index];
+    const updatedElement = createElement(x1, y1, clientX, clientY);
+    const elementsCopy = [...elements];
+    elementsCopy[index] = updatedElement;
+    setElements(elementsCopy);
   }
-
   const handleMouseUp = (event) => {
     setDrawing(false);
   }
 
-
+  //canvas
   return (
     <canvas 
     
