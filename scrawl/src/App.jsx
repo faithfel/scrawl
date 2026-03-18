@@ -1,8 +1,8 @@
 import { useLayoutEffect, useState } from 'react'
 import './App.css'
+import rough from 'roughjs/bundled/rough.esm.js';
 
-
-
+const generator = rough.generator();
 
 function App() {
 
@@ -10,11 +10,12 @@ function App() {
     const canvas = document.getElementById('canvas')
     const ctx = canvas.getContext('2d')
 
-    ctx.fillStyle = 'red'
-    ctx.fillRect(10, 10, 100, 100)
-
+    const roughCanvas = rough.canvas(canvas);
+    const rect = generator.rectangle(10, 10, 100, 100,);
+    roughCanvas.draw(rect);
+ 
   });
-  
+
   return (
     <canvas id="canvas" width={window.innerWidth} height={window.innerHeight} >Canvas</canvas>
   );
