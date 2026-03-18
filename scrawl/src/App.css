@@ -1,5 +1,10 @@
 #canvas {
-  background-color: green ;
-  margin: 10px;
+  background-color: #ffffff ;
+  margin: 20px;
   border-radius: 20px;
+}
+
+body {
+
+  background-color: #262423;
 }
